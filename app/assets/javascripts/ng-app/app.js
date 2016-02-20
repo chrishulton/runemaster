@@ -8,7 +8,7 @@ angular
         $routeProvider
             .when('/', {
                 templateUrl: 'home.html',
-                controller: 'HomeCtrl'
+                controller: 'HomeCtrl as mainVm'
             });
         $locationProvider.html5Mode({
           enabled: true,

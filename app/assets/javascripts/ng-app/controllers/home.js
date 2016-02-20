@@ -1,6 +1,7 @@
 // @ngInject
-function HomeCtrl($scope) {
-  $scope.message = "coming soon";
+function HomeCtrl($scope, Runes) {
+  var viewModel = this;
+  viewModel.runes = Runes.index();
 }
 
 angular.module('runemaster').controller('HomeCtrl', HomeCtrl);
