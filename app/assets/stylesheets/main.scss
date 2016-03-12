@@ -1,5 +1,11 @@
 body {
-  font-family: "Trebuchet MS", Helvetica, sans-serif
+  background: black;
+  color: #afafaf;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-variant: small-caps;
 }
 
 .runes {
@@ -7,10 +13,42 @@ body {
 }
 
 .runes-figure {
-  display: inline-block;
+  display: block;
   text-align: center;
 }
 
 .runes-figure > figcaption {
   font-size: 12px;
+}
+
+.recipeList {
+  border-right: 1px solid #928A72;
+  border-top: 1px solid #928A72;
+  display: inline-block;
+}
+
+.recipe {
+  border-bottom: 1px solid #928A72;
+  display: flex;
+  padding: 5px 0;
+}
+
+.recipe-group {
+  display: flex;
+}
+
+.recipe-part {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+}
+
+.recipe-part.recipe-part--rune {
+  width: 75px;
+}
+
+.recipe-part.recipe-part--gem {
+  width: 150px;
 }

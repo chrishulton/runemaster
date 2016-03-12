@@ -1,11 +1,37 @@
 <div class="runes">
-  <h1>runemaster</h1>
   <figure class="runes-figure">
+    <h1>runemaster</h1>
     <img ng-repeat="rune in mainVm.runes"
       ng-src="{{ rune.img_url }}"></img>
     <figcaption>all images c/o
       <a href="http://classic.battle.net/diablo2exp/">the arreat summit</a>
     </figcaption>
   </figure>
-  <h3>coming soon</h3>
+  <h3>formulas</h3>
+  <div class="recipeList">
+    <div ng-repeat="recipe in mainVm.runeRecipes" class="recipe">
+      <div ng-class="'recipe-part recipe-part--'+recipe.to.type">
+        <div>{{ recipe.to.quantity }} x {{ recipe.to.name }}</div>
+        <div>
+          <img ng-src="{{ mainVm.itemImgUrl(recipe.to.name) }}"></img>
+        </div>
+      </div>
+      <div class="recipe-part">
+        =
+      </div>
+      <div class="recipe-group">
+        <div ng-repeat="fromItem in recipe.from" class="recipe-group">
+          <div ng-class="'recipe-part recipe-part--'+fromItem.type">
+            <span>{{ fromItem.quantity }} x {{ fromItem.name }}</span>
+            <div>
+              <img ng-src="{{ mainVm.itemImgUrl(fromItem.name) }}"></img>
+            </div>
+          </div>
+          <div ng-if="!$last" class="recipe-part">
+            +
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
