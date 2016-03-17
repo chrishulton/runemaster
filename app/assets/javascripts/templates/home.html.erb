@@ -11,7 +11,12 @@
   <div class="recipeList">
     <div ng-repeat="recipe in mainVm.runeRecipes" class="recipe">
       <div ng-class="'recipe-part recipe-part--'+recipe.to.type">
-        <div>{{ recipe.to.quantity }} x {{ recipe.to.name }}</div>
+        <div>
+          <span ng-if="recipe.to.quantity > 1">
+            {{ recipe.to.quantity }} x
+          </span>
+          {{ recipe.to.name }}
+        </div>
         <div>
           <img ng-src="{{ mainVm.itemImgUrl(recipe.to.name) }}"></img>
         </div>
@@ -22,7 +27,12 @@
       <div class="recipe-group">
         <div ng-repeat="fromItem in recipe.from" class="recipe-group">
           <div ng-class="'recipe-part recipe-part--'+fromItem.type">
-            <span>{{ fromItem.quantity }} x {{ fromItem.name }}</span>
+            <div>
+              <span ng-if="fromItem.quantity > 1">
+                {{ fromItem.quantity }} x
+              </span>
+              {{ fromItem.name }}
+            </div>
             <div>
               <img ng-src="{{ mainVm.itemImgUrl(fromItem.name) }}"></img>
             </div>
