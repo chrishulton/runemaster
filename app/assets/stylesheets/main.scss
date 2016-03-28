@@ -12,6 +12,22 @@ h1,h2,h3,h4,h5,h6 {
   padding: 10px;
 }
 
+.runes-content {
+  display: flex;
+}
+
+.runes-content > div {
+  margin: 0 10px;
+}
+
+.runes-runeWords {
+  flex-grow: 1;
+}
+
+.runeWordList {
+  width: 100%;
+}
+
 .runes-figure {
   display: block;
   text-align: center;
@@ -22,6 +38,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .recipeList {
+  border-left: 1px solid #928A72;
   border-right: 1px solid #928A72;
   border-top: 1px solid #928A72;
   display: inline-block;
@@ -43,6 +60,7 @@ h1,h2,h3,h4,h5,h6 {
   flex-direction: column;
   justify-content: center;
   padding: 5px;
+  text-align: center;
 }
 
 .recipe-part.recipe-part--rune {
@@ -50,5 +68,15 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .recipe-part.recipe-part--gem {
-  width: 140px;
+  width: 70px;
+}
+
+.runeWordList td, th {
+  border: 1px solid #928A72;
+  padding: 10px;
+}
+
+.runeWord ul {
+  margin: 0;
+  padding-left: 17px;
 }

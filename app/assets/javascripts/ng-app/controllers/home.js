@@ -1,5 +1,5 @@
 // @ngInject
-function HomeCtrl($scope, Gems, Runes, RuneRecipes) {
+function HomeCtrl($scope, Gems, Runes, RuneRecipes, RuneWords) {
   var viewModel = this;
   var itemsToImageUrls = {};
   var addItemImageUrls = function(itemCollection, itemKey) {
@@ -20,6 +20,7 @@ function HomeCtrl($scope, Gems, Runes, RuneRecipes) {
     viewModel.gems = data;
   });
   viewModel.runeRecipes = RuneRecipes.index();
+  viewModel.runeWords = RuneWords.index();
 }
 
 angular.module('runemaster').controller('HomeCtrl', HomeCtrl);
