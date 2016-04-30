@@ -14,12 +14,16 @@ def self.parse_rune_table(rune_words_table, rune_words, ladder_only)
           content = content.squish
           rune_word_values << content.split(match[0])
         # item types
-        elsif match = content.match(/\d Socket /)
+        elsif match = content.match(/(\d) Socket (.*)/)
           item_types = []
-          content_item_types = content.split(match[0])
-          content_item_types[1].split(/\//).each do |content_item|
+          match[2].split(/\//).each do |content_item|
             content_item.sub!(/(\*)* \(.*\)/, "")
-            item_types << "#{match[0]}#{content_item}" if content_item.present?
+            if content_item.present?
+              item_types << {
+                "sockets" => match[1],
+                "type" => content_item.gsub(/[\* ]$/,'')
+              }
+            end
           end
           rune_word_values << item_types
         # stats

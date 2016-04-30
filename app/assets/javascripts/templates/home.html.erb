@@ -63,7 +63,10 @@
             <td>
               <ul>
                 <li ng-repeat="allowedItem in runeWord.allowed_items">
-                  {{ allowedItem }}
+                  <a href
+                    ng-click="mainVm.openItemsModal(allowedItem.type, allowedItem.sockets)">
+                    {{ allowedItem.sockets }} Socket {{ allowedItem.type }}
+                  </a>
                 </li>
               </ul>
             </td>

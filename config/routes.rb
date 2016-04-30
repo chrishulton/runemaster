@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :rune_recipes, defaults: {format: :json}, only: [:index]
       resources :rune_words, defaults: {format: :json}, only: [:index]
       resources :gems, defaults: {format: :json}, only: [:index]
+      resources :items, defaults: {format: :json}, only: [:index]
     end
   end
 

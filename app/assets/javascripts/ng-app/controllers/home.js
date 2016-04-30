@@ -1,5 +1,5 @@
 // @ngInject
-function HomeCtrl($scope, Gems, Runes, RuneRecipes, RuneWords) {
+function HomeCtrl($scope, $uibModal, Gems, Items, Runes, RuneRecipes, RuneWords) {
   var viewModel = this;
   var itemsToImageUrls = {};
   var addItemImageUrls = function(itemCollection, itemKey) {
@@ -21,6 +21,22 @@ function HomeCtrl($scope, Gems, Runes, RuneRecipes, RuneWords) {
   });
   viewModel.runeRecipes = RuneRecipes.index();
   viewModel.runeWords = RuneWords.index();
+
+  viewModel.openItemsModal = function(itemType, sockets) {
+    var modalInstance = $uibModal.open({
+      templateUrl: 'items_modal.html',
+      controller: 'ItemsModalCtrl',
+      windowClass: 'runesModal',
+      resolve: {
+        itemType: function () {
+          return itemType;
+        },
+        sockets: function () {
+          return sockets;
+        }
+      }
+    });
+  };
 }
 
 angular.module('runemaster').controller('HomeCtrl', HomeCtrl);

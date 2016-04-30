@@ -1,11 +1,15 @@
 body {
-  background: black;
+  background-color: black;
   color: #afafaf;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 h1,h2,h3,h4,h5,h6 {
   font-variant: small-caps;
+}
+
+a:focus {
+  outline: none;
 }
 
 .runes {
@@ -71,7 +75,7 @@ h1,h2,h3,h4,h5,h6 {
   width: 70px;
 }
 
-.runeWordList td, th {
+td, th {
   border: 1px solid #928A72;
   padding: 10px;
 }
@@ -79,4 +83,77 @@ h1,h2,h3,h4,h5,h6 {
 .runeWord ul {
   margin: 0;
   padding-left: 17px;
+}
+
+.runesModal .modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.runesModal .modal-header .modal-title {
+  flex: 1;
+}
+
+.runesModal .modal-header .modal-dismiss {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.runesModal .modal-dialog {
+  border: 2px solid #e5e5e5;
+  border-radius: 4px;
+  height: 90vh;
+  width: 90vw;
+}
+
+.runesModal .modal-dialog .modal-content {
+  background-color: black;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.runesModal .modal-body {
+  height: 100%;
+  overflow: scroll;
+  padding: 0 15px 80px;
+}
+
+.runesModal-heading {
+  align-items: center;
+  display: flex;
+}
+
+.runesModal-heading-quality {
+  cursor: pointer;
+  flex: 1;
+  font-weight: 300;
+  text-align: center;
+}
+
+.runesModal-heading-quality.is-selected {
+  background-color: #928A72;
+  color: white;
+  font-weight: 700;
+}
+
+.runesModal-error {
+  font-weight: 400;
+  padding: 10px;
+  text-align: center;
+}
+
+.runesModal-items {
+  width: 100%;
+}
+
+.runesModal-item-imgWrapper {
+  text-align: center;
+}
+
+.runesModal-item-classSpecific {
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 5px;
+  text-transform: uppercase;
 }

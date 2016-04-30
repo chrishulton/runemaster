@@ -1,0 +1,58 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+    {{ sockets }} Socket {{ itemType }}
+  </h3>
+  <span class="modal-dismiss"
+    ng-click="$dismiss()">x</span>
+</div>
+<div class="modal-body">
+  <div ng-if="itemTypeMissing">
+    <p class="runesModal-error">
+      Unable to find information.
+    </p>
+  </div>
+  <div ng-if="!itemTypeMissing">
+    <div class="runesModal-heading">
+      <h4 class="runesModal-heading-quality"
+        ng-class="{ 'is-selected' : qualitySelected === 'normal' }"
+        ng-click="selectQuality('normal')">Normal</h4>
+      <h4 class="runesModal-heading-quality"
+        ng-class="{ 'is-selected' : qualitySelected === 'exceptional' }"
+        ng-click="selectQuality('exceptional')">Exceptional</h4>
+      <h4 class="runesModal-heading-quality"
+        ng-class="{ 'is-selected' : qualitySelected === 'elite' }"
+        ng-click="selectQuality('elite')">Elite</h4>
+    </div>
+    <p ng-show="!items"
+      class="runesModal-error">
+      Unable to find information.
+    </p>
+    <table ng-show="items"
+      class="runesModal-items">
+      <thead>
+        <tr>
+          <th ng-repeat="property in items.properties">
+            {{ property.label }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in items.items | filter: socketsFilter">
+          <td ng-repeat="property in items.properties">
+            <div ng-if="property.key == 'img_url'"
+              class="runesModal-item-imgWrapper">
+              <img ng-src="{{ ::item[property.key] }}"></img>
+              <div ng-if="item.class_specific"
+                class="runesModal-item-classSpecific">
+                *{{ item.class_specific }} ONLY*
+              </div>
+            </div>
+            <span ng-if="property.key !== 'img_url'">
+              {{ item[property.key] }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
