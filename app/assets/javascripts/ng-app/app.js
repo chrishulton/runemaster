@@ -3,8 +3,9 @@ angular
         'ngRoute',
         'ngResource',
         'templates',
-        'ui.bootstrap'
-    ]).config(function ($routeProvider, $locationProvider) {
+        'ui.bootstrap',
+        'LocalStorageModule',
+    ]).config(function ($routeProvider, $locationProvider, localStorageServiceProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'home.html',
@@ -14,5 +15,7 @@ angular
           enabled: true,
           requireBase: false
         });
+
+        localStorageServiceProvider.setPrefix('runemaster');
     });
 

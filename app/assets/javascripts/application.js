@@ -19,4 +19,5 @@
 //= require angular-rails-templates
 //= require bootstrap
 //= require angular-bootstrap
+//= require angular-local-storage
 //= require_tree .
