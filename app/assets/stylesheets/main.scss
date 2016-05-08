@@ -24,14 +24,6 @@ a:focus {
   margin: 0 10px;
 }
 
-.runes-runeWords {
-  flex-grow: 1;
-}
-
-.runeWordList {
-  width: 100%;
-}
-
 .runes-figure {
   display: block;
   text-align: center;
@@ -41,123 +33,7 @@ a:focus {
   font-size: 12px;
 }
 
-.recipeList {
-  border-left: 1px solid #928A72;
-  border-right: 1px solid #928A72;
-  border-top: 1px solid #928A72;
-  display: inline-block;
-}
-
-.recipe {
-  border-bottom: 1px solid #928A72;
-  display: flex;
-  padding: 5px 0;
-}
-
-.recipe-group {
-  display: flex;
-}
-
-.recipe-part {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 5px;
-  text-align: center;
-}
-
-.recipe-part.recipe-part--rune {
-  width: 70px;
-}
-
-.recipe-part.recipe-part--gem {
-  width: 70px;
-}
-
 td, th {
   border: 1px solid #928A72;
   padding: 10px;
-}
-
-.runeWord ul {
-  margin: 0;
-  padding-left: 17px;
-}
-
-.runesModal .modal-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.runesModal .modal-header .modal-title {
-  flex: 1;
-}
-
-.runesModal .modal-header .modal-dismiss {
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.runesModal .modal-dialog {
-  border: 2px solid #e5e5e5;
-  border-radius: 4px;
-  height: 90vh;
-  width: 90vw;
-}
-
-.runesModal .modal-dialog .modal-content {
-  background-color: black;
-  height: 100%;
-  overflow-y: hidden;
-}
-
-.runesModal .modal-body {
-  height: 100%;
-  overflow: scroll;
-  padding: 0 15px 80px;
-}
-
-.runesModal-heading {
-  align-items: center;
-  display: flex;
-}
-
-.runesModal-heading-quality {
-  cursor: pointer;
-  flex: 1;
-  font-weight: 300;
-  text-align: center;
-}
-
-.runesModal-heading-quality.is-selected {
-  background-color: #928A72;
-  color: white;
-  font-weight: 700;
-}
-
-.runesModal-error {
-  font-weight: 400;
-  padding: 10px;
-  text-align: center;
-}
-
-.runesModal-items {
-  width: 100%;
-}
-
-.runesModal-item-imgWrapper {
-  text-align: center;
-}
-
-.runesModal-item-classSpecific {
-  font-size: 12px;
-  font-weight: 700;
-  margin-top: 5px;
-  text-transform: uppercase;
-}
-
-.runesModal-item-zeroState {
-  text-align: center;
 }

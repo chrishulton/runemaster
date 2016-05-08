@@ -1,0 +1,76 @@
+.itemsModal .modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.itemsModal .modal-header .modal-title {
+  flex: 1;
+}
+
+.itemsModal .modal-header .modal-dismiss {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.itemsModal .modal-dialog {
+  border: 2px solid #e5e5e5;
+  border-radius: 4px;
+  height: 90vh;
+  width: 90vw;
+}
+
+.itemsModal .modal-dialog .modal-content {
+  background-color: black;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.itemsModal .modal-body {
+  height: 100%;
+  overflow: scroll;
+  padding: 0 15px 80px;
+}
+
+.itemsModal-heading {
+  align-items: center;
+  display: flex;
+}
+
+.itemsModal-heading-quality {
+  cursor: pointer;
+  flex: 1;
+  font-weight: 300;
+  text-align: center;
+}
+
+.itemsModal-heading-quality.is-selected {
+  background-color: #928A72;
+  color: white;
+  font-weight: 700;
+}
+
+.itemsModal-error {
+  font-weight: 400;
+  padding: 10px;
+  text-align: center;
+}
+
+.itemsModal-items {
+  width: 100%;
+}
+
+.itemsModal-item-imgWrapper {
+  text-align: center;
+}
+
+.itemsModal-item-classSpecific {
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 5px;
+  text-transform: uppercase;
+}
+
+.itemsModal-item-zeroState {
+  text-align: center;
+}

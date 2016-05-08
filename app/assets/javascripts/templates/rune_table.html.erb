@@ -1,0 +1,45 @@
+<div>
+  <h3>runes</h3>
+  <table class="runeList">
+    <thead>
+      <th>Rune</th>
+      <th># Owned</th>
+      <th>Recipe</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="rune in mainVm.runes">
+        <td class="runeList-rune">
+          <div class="runeList-content">
+            <span>{{ rune.name }}</span>
+            <img ng-src="{{ rune.img_url }}"></img>
+          </div>
+        </td>
+        <td class="runeList-owned">
+          <div class="runeList-content">
+            <input type='number' min='0'>
+          </div>
+        </td>
+        <td class="runeList-recipe">
+          <div class="recipe">
+            <div ng-repeat="fromItem in mainVm.runeRecipes[rune.name]" class="recipe-group">
+              <div ng-class="'runeList-content recipe-part--'+fromItem.type">
+                <div>
+                  <span ng-if="fromItem.quantity > 1">
+                    {{ fromItem.quantity }} x
+                  </span>
+                  {{ fromItem.name }}
+                </div>
+                <div>
+                  <img ng-src="{{ mainVm.itemImgUrl(fromItem.name) }}"></img>
+                </div>
+              </div>
+              <div ng-if="!$last" class="runeList-content">
+                +
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

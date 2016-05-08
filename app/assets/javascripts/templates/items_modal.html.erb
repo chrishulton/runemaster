@@ -7,28 +7,28 @@
 </div>
 <div class="modal-body">
   <div ng-if="itemTypeMissing">
-    <p class="runesModal-error">
+    <p class="itemsModal-error">
       Unable to find information.
     </p>
   </div>
   <div ng-if="!itemTypeMissing">
-    <div class="runesModal-heading">
-      <h4 class="runesModal-heading-quality"
+    <div class="itemsModal-heading">
+      <h4 class="itemsModal-heading-quality"
         ng-class="{ 'is-selected' : qualitySelected === 'normal' }"
         ng-click="selectQuality('normal')">Normal</h4>
-      <h4 class="runesModal-heading-quality"
+      <h4 class="itemsModal-heading-quality"
         ng-class="{ 'is-selected' : qualitySelected === 'exceptional' }"
         ng-click="selectQuality('exceptional')">Exceptional</h4>
-      <h4 class="runesModal-heading-quality"
+      <h4 class="itemsModal-heading-quality"
         ng-class="{ 'is-selected' : qualitySelected === 'elite' }"
         ng-click="selectQuality('elite')">Elite</h4>
     </div>
     <p ng-show="!items"
-      class="runesModal-error">
+      class="itemsModal-error">
       Unable to find information.
     </p>
     <table ng-show="items"
-      class="runesModal-items">
+      class="itemsModal-items">
       <thead>
         <tr>
           <th ng-repeat="property in items.properties">
@@ -40,10 +40,10 @@
         <tr ng-repeat="item in items.items | filter: socketsFilter as results">
           <td ng-repeat="property in items.properties">
             <div ng-if="property.key == 'img_url'"
-              class="runesModal-item-imgWrapper">
+              class="itemsModal-item-imgWrapper">
               <img ng-src="{{ ::item[property.key] }}"></img>
               <div ng-if="item.class_specific"
-                class="runesModal-item-classSpecific">
+                class="itemsModal-item-classSpecific">
                 *{{ item.class_specific }} ONLY*
               </div>
             </div>
@@ -53,7 +53,7 @@
           </td>
         </tr>
         <tr ng-if='results.length === 0'>
-          <td class="runesModal-item-zeroState"
+          <td class="itemsModal-item-zeroState"
             colspan="{{ items.properties.length }}">
             No applicable items.
           </td>

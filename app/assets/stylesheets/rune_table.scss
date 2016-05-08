@@ -1,0 +1,45 @@
+.runeList {
+  border-left: 1px solid #928A72;
+  border-right: 1px solid #928A72;
+  border-top: 1px solid #928A72;
+  display: inline-block;
+}
+
+.runeList th {
+  white-space: nowrap;
+}
+
+.runeList-owned input {
+  color: black;
+  width: 40px;
+}
+
+.runeList-recipe {
+  width: 120px;
+}
+
+.recipe {
+  display: flex;
+  padding: 5px 0;
+}
+
+.recipe-group {
+  display: flex;
+}
+
+.runeList-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+  text-align: center;
+}
+
+.recipe-part--rune {
+  width: 70px;
+}
+
+.recipe-part--gem {
+  width: 70px;
+}

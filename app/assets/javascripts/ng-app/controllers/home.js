@@ -19,14 +19,14 @@ function HomeCtrl($scope, $uibModal, Gems, Items, Runes, RuneRecipes, RuneWords)
     addItemImageUrls(data, "gem");
     viewModel.gems = data;
   });
-  viewModel.runeRecipes = RuneRecipes.index();
+  viewModel.runeRecipes = RuneRecipes.get();
   viewModel.runeWords = RuneWords.index();
 
   viewModel.openItemsModal = function(itemType, sockets) {
     var modalInstance = $uibModal.open({
       templateUrl: 'items_modal.html',
       controller: 'ItemsModalCtrl',
-      windowClass: 'runesModal',
+      windowClass: 'itemsModal',
       resolve: {
         itemType: function () {
           return itemType;
