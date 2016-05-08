@@ -27,19 +27,22 @@
           </ul>
         </td>
         <td>
-          <uib-progressbar max="runeWord.rune_order.length"
-            value="mainVm.countRunesOwned(runeWord.rune_order)">
-          </uib-progressbar>
-          <ul>
-            <li ng-repeat="rune in runeWord.rune_order track by $index"
-              class="runeWord-rune"
-              ng-class="{ 'runeWord-rune--owned': mainVm.runesOwned[rune] > 0 }">
-              {{ rune }}
-              <span ng-if="mainVm.runesOwned[rune] > 0">
-                ({{ mainVm.runesOwned[rune] }})
-              </span>
-            </li>
-          </ul>
+          <div class="runeWord-runesList">
+            <uib-progressbar max="runeWord.rune_order.length"
+              value="mainVm.countRunesOwned(runeWord.rune_order)"
+              type="success">
+            </uib-progressbar>
+            <ul>
+              <li ng-repeat="rune in runeWord.rune_order track by $index"
+                class="runeWord-rune"
+                ng-class="{ 'runeWord-rune--owned': mainVm.runesOwned[rune] > 0 }">
+                {{ rune }}
+                <span ng-if="mainVm.runesOwned[rune] > 0">
+                  ({{ mainVm.runesOwned[rune] }})
+                </span>
+              </li>
+            </ul>
+          </div>
         </td>
         <td>
           <ul>
