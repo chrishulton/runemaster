@@ -43,8 +43,8 @@
               class="itemsModal-item-imgWrapper">
               <img ng-src="{{ ::item[property.key] }}"></img>
               <div ng-if="item.class_specific"
-                class="itemsModal-item-classSpecific">
-                *{{ item.class_specific }} ONLY*
+                class="isRestricted">
+                {{ item.class_specific }} ONLY
               </div>
             </div>
             <span ng-if="property.key !== 'img_url'">

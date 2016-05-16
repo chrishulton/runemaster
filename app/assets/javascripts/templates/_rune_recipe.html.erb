@@ -1,0 +1,18 @@
+<div class='recipe'>
+  <div ng-repeat="fromItem in recipe" class="recipe-group">
+    <div ng-class="'runeList-content recipe-part--'+fromItem.type">
+      <div>
+        <span ng-if="fromItem.quantity > 1">
+          {{ fromItem.quantity }} x
+        </span>
+        {{ fromItem.name }}
+      </div>
+      <div>
+        <img ng-src="{{ itemImgUrl(fromItem.name) }}"></img>
+      </div>
+    </div>
+    <div ng-if="!$last" class="runeList-content">
+      +
+    </div>
+  </div>
+</div>

@@ -1,15 +1,14 @@
 // @ngInject
-function HomeCtrl($scope, $uibModal, localStorageService, Gems, Items, Runes, RuneRecipes, RuneWords) {
+function HomeCtrl($scope, $uibModal, localStorageService, Gems, ImgUrls, Items, Runes, RuneRecipes, RuneWords) {
   var viewModel = this;
   viewModel.itemImgUrl = function(itemName) {
-    return itemsToImageUrls[itemName];
+    return ImgUrls.getImgUrl(itemName);
   };
   viewModel.runesOwned = {};
 
-  var itemsToImageUrls = {};
   function addItemImageUrls(itemCollection, itemKey) {
     itemCollection.forEach(function(item) {
-      itemsToImageUrls[item[itemKey]] = item.img_url;
+      ImgUrls.addImgUrl(item[itemKey], item.img_url);
     });
   }
 
@@ -51,6 +50,17 @@ function HomeCtrl($scope, $uibModal, localStorageService, Gems, Items, Runes, Ru
     });
 
     return runesOwned;
+  };
+
+  viewModel.runeConditionMet = function(rune, runeWordRuneOrder, runeWordIndex) {
+    var numRunesAvailable = viewModel.runesOwned[rune];
+    for (var i = 0; i < runeWordIndex; ++i) {
+      if (runeWordRuneOrder[i] === rune) {
+        numRunesAvailable--;
+      };
+    };
+
+    return numRunesAvailable > 0;
   };
 
   viewModel.openItemsModal = function(itemType, sockets) {

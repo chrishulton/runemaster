@@ -21,24 +21,9 @@
           </div>
         </td>
         <td class="runeList-recipe">
-          <div class="recipe">
-            <div ng-repeat="fromItem in mainVm.runeRecipes[rune.name]" class="recipe-group">
-              <div ng-class="'runeList-content recipe-part--'+fromItem.type">
-                <div>
-                  <span ng-if="fromItem.quantity > 1">
-                    {{ fromItem.quantity }} x
-                  </span>
-                  {{ fromItem.name }}
-                </div>
-                <div>
-                  <img ng-src="{{ mainVm.itemImgUrl(fromItem.name) }}"></img>
-                </div>
-              </div>
-              <div ng-if="!$last" class="runeList-content">
-                +
-              </div>
-            </div>
-          </div>
+          <rune-recipe rune='rune'
+            recipe='mainVm.runeRecipes[rune.name]'>
+          </rune-recipe>
         </td>
       </tr>
     </tbody>
