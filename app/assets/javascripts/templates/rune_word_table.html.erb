@@ -1,4 +1,4 @@
-<div ng-show="mainVm.runeWordsLoaded">
+<div ng-show="mainVm.resourcesLoaded">
   <h3>rune words</h3>
   <div class="runeWordFilters">
     <fieldset>
@@ -10,6 +10,13 @@
       <select
         ng-model="mainVm.selectedItemType"
         ng-options="itemType for itemType in mainVm.itemTypes">
+      </select>
+    </fieldset>
+    <fieldset>
+      Runes Needed:
+      <select
+        ng-model="mainVm.selectedRunesNeeded"
+        ng-options="runesNeeded for runesNeeded in mainVm.runesNeededAmts">
       </select>
     </fieldset>
     <fieldset>

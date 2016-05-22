@@ -1,16 +1,17 @@
 // @ngInject
 function HomeCtrl(
-  $scope, $uibModal,
+  $q, $scope, $uibModal,
   localStorageService,
   Gems, ImgUrls, Items, Runes, RuneRecipes, RuneWordFilter, RuneWords
 ) {
   var viewModel = this;
 
-  viewModel.runesLoaded = false;
-  viewModel.runeWordsLoaded = false;
+  viewModel.resourcesLoaded = false;
   viewModel.includeLadderOnly = true;
-  viewModel.selectedItemType = "All";
-  viewModel.itemTypes = ["All"];
+  viewModel.selectedItemType = RuneWordFilter.getItemTypeDefaultLabel();
+  viewModel.itemTypes = [viewModel.selectedItemType];
+  viewModel.selectedRunesNeeded = RuneWordFilter.getRunesNeededDefaultLabel();
+  viewModel.runesNeededAmts = [viewModel.selectedRunesNeeded];
   viewModel.runesOwned = {};
 
   viewModel.itemImgUrl = function(itemName) {
@@ -33,29 +34,6 @@ function HomeCtrl(
     });
   }
 
-  Runes.index().$promise.then(function(runeData) {
-    addItemImageUrls(runeData, "name");
-    viewModel.runes = runeData;
-
-    initializeLocalStorage();
-    viewModel.runesLoaded = true;
-  });
-  Gems.index().$promise.then(function(gemData) {
-    addItemImageUrls(gemData, "gem");
-    viewModel.gems = gemData;
-  });
-  Items.get().$promise.then(function(data) {
-    viewModel.items = data;
-    viewModel.itemTypes = viewModel.itemTypes.concat(
-      Object.keys(data.toJSON()).sort()
-    );
-  });
-  RuneWords.index().$promise.then(function(runeWordData) {
-    viewModel.runeWords = runeWordData;
-    viewModel.runeWordsLoaded = true;
-  });
-  viewModel.runeRecipes = RuneRecipes.get();
-
   viewModel.filterRuneWordTable = function(runeWord) {
     return RuneWordFilter.filterByLadderAllowed(
       runeWord, viewModel.includeLadderOnly
@@ -63,6 +41,8 @@ function HomeCtrl(
       runeWord, viewModel.selectedItemType
     ) && RuneWordFilter.filterBySearchText(
       runeWord, viewModel.runeWordNameSearchText
+    ) && RuneWordFilter.filterByRunesNeeded(
+      runeWord, viewModel.countRunesOwned(runeWord.rune_order), viewModel.selectedRunesNeeded
     );
   }
 
@@ -112,6 +92,47 @@ function HomeCtrl(
       }
     });
   };
+
+  var promises = [
+    Runes.index().$promise.then(function(runeData) {
+      addItemImageUrls(runeData, "name");
+      viewModel.runes = runeData;
+
+      initializeLocalStorage();
+    }),
+
+    Gems.index().$promise.then(function(gemData) {
+      addItemImageUrls(gemData, "gem");
+      viewModel.gems = gemData;
+    }),
+
+    Items.get().$promise.then(function(data) {
+      viewModel.items = data;
+      viewModel.itemTypes = viewModel.itemTypes.concat(
+        Object.keys(data.toJSON()).sort()
+      );
+    }),
+
+    RuneWords.index().$promise.then(function(runeWordData) {
+      viewModel.runeWords = runeWordData;
+      var maxRunesNeeded = _.max(
+        _.map(runeWordData, function(runeWord) {
+          return runeWord.rune_order.length;
+        })
+      )
+      for (var i = 0; i <= maxRunesNeeded; ++i) {
+        viewModel.runesNeededAmts.push(i);
+      }
+    }),
+
+    RuneRecipes.get().$promise.then(function(runeRecipeData) {
+      viewModel.runeRecipes = runeRecipeData;
+    })
+  ];
+
+  $q.all(promises).then(function() {
+    viewModel.resourcesLoaded = true;
+  });
 }
 
 angular.module('runemaster').controller('HomeCtrl', HomeCtrl);
