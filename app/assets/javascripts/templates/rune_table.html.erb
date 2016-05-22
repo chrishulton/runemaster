@@ -4,6 +4,7 @@
     <thead>
       <th>Rune</th>
       <th># Owned</th>
+      <th>Baal Odds</th>
       <th>Recipe</th>
     </thead>
     <tbody>
@@ -19,6 +20,9 @@
             <input type='number' min='0'
               ng-model='mainVm.runesOwned[rune.name]'>
           </div>
+        </td>
+        <td class="runeList-odds">
+          {{ rune.odds }}
         </td>
         <td class="runeList-recipe">
           <rune-recipe rune='rune'
