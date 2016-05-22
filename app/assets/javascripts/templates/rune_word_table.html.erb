@@ -1,4 +1,4 @@
-<div>
+<div ng-show="mainVm.runeWordsLoaded">
   <h3>rune words</h3>
   <div class="runeWordFilters">
     <fieldset>
@@ -18,7 +18,12 @@
         ng-model="mainVm.runeWordNameSearchText">
     </fieldset>
   </div>
-  <table class="runeWordList">
+  <p class="zeroState"
+    ng-show="filteredRuneWords.length === 0">
+    No applicable items.
+  </p>
+  <table class="runeWordList"
+    ng-show="filteredRuneWords.length > 0">
     <thead>
       <th>Name</th>
       <th>Allowed Items</th>
@@ -27,7 +32,7 @@
     </thead>
     <tbody>
       <tr class="runeWord"
-        ng-repeat="runeWord in mainVm.runeWords | orderBy:'name' | filter:mainVm.filterRuneWordTable">
+        ng-repeat="runeWord in mainVm.runeWords | orderBy:'name' | filter:mainVm.filterRuneWordTable as filteredRuneWords">
         <td>
           {{ runeWord.name }}
           <div ng-if="runeWord.ladder_only"

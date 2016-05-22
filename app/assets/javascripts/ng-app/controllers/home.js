@@ -6,6 +6,8 @@ function HomeCtrl(
 ) {
   var viewModel = this;
 
+  viewModel.runesLoaded = false;
+  viewModel.runeWordsLoaded = false;
   viewModel.includeLadderOnly = true;
   viewModel.selectedItemType = "All";
   viewModel.itemTypes = ["All"];
@@ -36,6 +38,7 @@ function HomeCtrl(
     viewModel.runes = runeData;
 
     initializeLocalStorage();
+    viewModel.runesLoaded = true;
   });
   Gems.index().$promise.then(function(gemData) {
     addItemImageUrls(gemData, "gem");
@@ -47,9 +50,11 @@ function HomeCtrl(
       Object.keys(data.toJSON()).sort()
     );
   });
-
+  RuneWords.index().$promise.then(function(runeWordData) {
+    viewModel.runeWords = runeWordData;
+    viewModel.runeWordsLoaded = true;
+  });
   viewModel.runeRecipes = RuneRecipes.get();
-  viewModel.runeWords = RuneWords.index();
 
   viewModel.filterRuneWordTable = function(runeWord) {
     return RuneWordFilter.filterByLadderAllowed(
