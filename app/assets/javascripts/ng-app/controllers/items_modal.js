@@ -1,7 +1,8 @@
 // @ngInject
-function ItemsModalCtrl($scope, Items, itemType, sockets) {
+function ItemsModalCtrl($scope, itemType, sockets, itemsList) {
   $scope.itemType = itemType;
   $scope.sockets = sockets;
+  $scope.itemsList = itemsList;
   $scope.qualitySelected = "elite";
   $scope.itemTypeMissing = false;
 
@@ -14,14 +15,12 @@ function ItemsModalCtrl($scope, Items, itemType, sockets) {
     return item.sockets >= $scope.sockets;
   }
 
-  Items.get().$promise.then(function(data) {
-    if (data[itemType]) {
-      $scope.itemData = data[itemType];
-      $scope.selectQuality("elite");
-    } else {
-      $scope.itemTypeMissing = true;
-    }
-  });
+  if ($scope.itemsList[itemType]) {
+    $scope.itemData = $scope.itemsList[itemType];
+    $scope.selectQuality("elite");
+  } else {
+    $scope.itemTypeMissing = true;
+  }
 }
 
 angular.module('runemaster').controller('ItemsModalCtrl', ItemsModalCtrl);

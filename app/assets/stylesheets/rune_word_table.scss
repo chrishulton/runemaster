@@ -2,6 +2,13 @@
   flex-grow: 1;
 }
 
+.runeWordFilters {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
 .runeWordList {
   width: 100%;
 }

@@ -1,5 +1,23 @@
-<div class="runes-runeWords">
+<div>
   <h3>rune words</h3>
+  <div class="runeWordFilters">
+    <fieldset>
+      Include Ladder Only?
+      <input type="checkbox" ng-model="mainVm.includeLadderOnly">
+    </fieldset>
+    <fieldset>
+      Allowed Items:
+      <select
+        ng-model="mainVm.selectedItemType"
+        ng-options="itemType for itemType in mainVm.itemTypes">
+      </select>
+    </fieldset>
+    <fieldset>
+      Search by Name:
+      <input type="text"
+        ng-model="mainVm.runeWordNameSearchText">
+    </fieldset>
+  </div>
   <table class="runeWordList">
     <thead>
       <th>Name</th>
@@ -8,7 +26,8 @@
       <th>Completed Stats</th>
     </thead>
     <tbody>
-      <tr ng-repeat="runeWord in mainVm.runeWords | orderBy:'name'" class="runeWord">
+      <tr class="runeWord"
+        ng-repeat="runeWord in mainVm.runeWords | orderBy:'name' | filter:mainVm.filterRuneWordTable">
         <td>
           {{ runeWord.name }}
           <div ng-if="runeWord.ladder_only"

@@ -1,10 +1,19 @@
 // @ngInject
-function HomeCtrl($scope, $uibModal, localStorageService, Gems, ImgUrls, Items, Runes, RuneRecipes, RuneWords) {
+function HomeCtrl(
+  $scope, $uibModal,
+  localStorageService,
+  Gems, ImgUrls, Items, Runes, RuneRecipes, RuneWordFilter, RuneWords
+) {
   var viewModel = this;
+
+  viewModel.includeLadderOnly = true;
+  viewModel.selectedItemType = "All";
+  viewModel.itemTypes = ["All"];
+  viewModel.runesOwned = {};
+
   viewModel.itemImgUrl = function(itemName) {
     return ImgUrls.getImgUrl(itemName);
   };
-  viewModel.runesOwned = {};
 
   function addItemImageUrls(itemCollection, itemKey) {
     itemCollection.forEach(function(item) {
@@ -22,18 +31,35 @@ function HomeCtrl($scope, $uibModal, localStorageService, Gems, ImgUrls, Items, 
     });
   }
 
-  Runes.index().$promise.then(function(data) {
-    addItemImageUrls(data, "name");
-    viewModel.runes = data;
+  Runes.index().$promise.then(function(runeData) {
+    addItemImageUrls(runeData, "name");
+    viewModel.runes = runeData;
 
     initializeLocalStorage();
   });
-  Gems.index().$promise.then(function(data) {
-    addItemImageUrls(data, "gem");
-    viewModel.gems = data;
+  Gems.index().$promise.then(function(gemData) {
+    addItemImageUrls(gemData, "gem");
+    viewModel.gems = gemData;
   });
+  Items.get().$promise.then(function(data) {
+    viewModel.items = data;
+    viewModel.itemTypes = viewModel.itemTypes.concat(
+      Object.keys(data.toJSON()).sort()
+    );
+  });
+
   viewModel.runeRecipes = RuneRecipes.get();
   viewModel.runeWords = RuneWords.index();
+
+  viewModel.filterRuneWordTable = function(runeWord) {
+    return RuneWordFilter.filterByLadderAllowed(
+      runeWord, viewModel.includeLadderOnly
+    ) && RuneWordFilter.filterByItemType(
+      runeWord, viewModel.selectedItemType
+    ) && RuneWordFilter.filterBySearchText(
+      runeWord, viewModel.runeWordNameSearchText
+    );
+  }
 
   viewModel.countRunesOwned = function(runeList) {
     var runeListAmts = {};
@@ -74,6 +100,9 @@ function HomeCtrl($scope, $uibModal, localStorageService, Gems, ImgUrls, Items, 
         },
         sockets: function () {
           return sockets;
+        },
+        itemsList: function() {
+          return viewModel.items;
         }
       }
     });
