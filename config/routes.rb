@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   namespace :api do
     namespace :v1 do
       resources :runes, defaults: {format: :json}, only: [:index]
