@@ -1,5 +1,7 @@
 // @ngInject
 function runeRecipe(ImgUrls) {
+  "use strict";
+
   return {
     restrict: 'E',
     scope: {
@@ -10,7 +12,7 @@ function runeRecipe(ImgUrls) {
     link: function(scope) {
       scope.itemImgUrl = ImgUrls.getImgUrl;
     }
-  }
-};
+  };
+}
 
 angular.module('runemaster').directive('runeRecipe', runeRecipe);

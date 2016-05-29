@@ -1,3 +1,4 @@
+/* global _ */
 // @ngInject
 function RuneWordFilter() {
   "use strict";
@@ -27,7 +28,7 @@ function RuneWordFilter() {
 
     filterByLadderAllowed: function(runeWord, ladderAllowed) {
       if (ladderAllowed) {
-        return true
+        return true;
       } else {
         return !runeWord.ladder_only;
       }

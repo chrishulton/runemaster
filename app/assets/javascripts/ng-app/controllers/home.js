@@ -1,9 +1,12 @@
+/* global _ */
 // @ngInject
 function HomeCtrl(
   $q, $scope, $uibModal,
   localStorageService,
   Gems, ImgUrls, Items, Runes, RuneRecipes, RuneWordFilter, RuneWords
 ) {
+  "use strict";
+
   var viewModel = this;
 
   viewModel.resourcesLoaded = false;
@@ -44,7 +47,7 @@ function HomeCtrl(
     ) && RuneWordFilter.filterByRunesNeeded(
       runeWord, viewModel.countRunesOwned(runeWord.rune_order), viewModel.selectedRunesNeeded
     );
-  }
+  };
 
   viewModel.countRunesOwned = function(runeList) {
     var runeListAmts = {};
@@ -57,7 +60,7 @@ function HomeCtrl(
       if (runeListAmts[rune] > 0) {
         runesOwned += 1;
         runeListAmts[rune] -=1;
-      };
+      }
     });
 
     return runesOwned;
@@ -68,14 +71,14 @@ function HomeCtrl(
     for (var i = 0; i < runeWordIndex; ++i) {
       if (runeWordRuneOrder[i] === rune) {
         numRunesAvailable--;
-      };
-    };
+      }
+    }
 
     return numRunesAvailable > 0;
   };
 
   viewModel.openItemsModal = function(itemType, sockets) {
-    var modalInstance = $uibModal.open({
+    $uibModal.open({
       templateUrl: 'items_modal.html',
       controller: 'ItemsModalCtrl',
       windowClass: 'itemsModal',
@@ -119,7 +122,7 @@ function HomeCtrl(
         _.map(runeWordData, function(runeWord) {
           return runeWord.rune_order.length;
         })
-      )
+      );
       for (var i = 0; i <= maxRunesNeeded; ++i) {
         viewModel.runesNeededAmts.push(i);
       }
