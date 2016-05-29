@@ -31,30 +31,30 @@
       class="itemsModal-items">
       <thead>
         <tr>
-          <th ng-repeat="property in items.properties">
-            {{ property.label }}
+          <th ng-repeat="property in ::items.properties">
+            {{ ::property.label }}
           </th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="item in items.items | filter: socketsFilter as results">
-          <td ng-repeat="property in items.properties">
+          <td ng-repeat="property in ::items.properties">
             <div ng-if="property.key == 'img_url'"
               class="itemsModal-item-imgWrapper">
               <img ng-src="{{ ::item[property.key] }}"></img>
               <div ng-if="item.class_specific"
                 class="isRestricted">
-                {{ item.class_specific }} ONLY
+                {{ ::item.class_specific }} ONLY
               </div>
             </div>
             <span ng-if="property.key !== 'img_url'">
-              {{ item[property.key] }}
+              {{ ::item[property.key] }}
             </span>
           </td>
         </tr>
-        <tr ng-if='results.length === 0'>
+        <tr ng-show='results.length === 0'>
           <td class="zeroState"
-            colspan="{{ items.properties.length }}">
+            colspan="{{ ::items.properties.length }}">
             No applicable items.
           </td>
         </tr>

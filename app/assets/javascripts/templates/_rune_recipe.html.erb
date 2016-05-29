@@ -3,9 +3,9 @@
     <div ng-class="'runeList-content recipe-part--'+fromItem.type">
       <div>
         <span ng-if="fromItem.quantity > 1">
-          {{ fromItem.quantity }} x
+          {{ ::fromItem.quantity }} x
         </span>
-        {{ fromItem.name }}
+        {{ ::fromItem.name }}
       </div>
       <div>
         <img ng-src="{{ itemImgUrl(fromItem.name) }}"></img>

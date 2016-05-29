@@ -8,11 +8,11 @@
       <th>Recipe</th>
     </thead>
     <tbody>
-      <tr ng-repeat="rune in mainVm.runes">
+      <tr ng-repeat="rune in ::mainVm.runes">
         <td class="runeList-rune">
           <div class="runeList-content">
-            <span>{{ rune.name }}</span>
-            <img ng-src="{{ rune.img_url }}"></img>
+            <span>{{ ::rune.name }}</span>
+            <img ng-src="{{ ::rune.img_url }}"></img>
           </div>
         </td>
         <td class="runeList-owned">
@@ -22,7 +22,7 @@
           </div>
         </td>
         <td class="runeList-odds">
-          {{ rune.odds }}
+          {{ ::rune.odds }}
         </td>
         <td class="runeList-recipe">
           <rune-recipe rune='rune'

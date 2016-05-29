@@ -39,9 +39,9 @@
     </thead>
     <tbody>
       <tr class="runeWord"
-        ng-repeat="runeWord in mainVm.runeWords | orderBy:'name' | filter:mainVm.filterRuneWordTable as filteredRuneWords">
+        ng-repeat="runeWord in mainVm.runeWords | filter:mainVm.filterRuneWordTable | orderBy:'name' as filteredRuneWords">
         <td>
-          {{ runeWord.name }}
+          {{ ::runeWord.name }}
           <div ng-if="runeWord.ladder_only"
             class="isRestricted">
             Ladder Only
@@ -49,10 +49,10 @@
         </td>
         <td>
           <ul>
-            <li ng-repeat="allowedItem in runeWord.allowed_items">
+            <li ng-repeat="allowedItem in ::runeWord.allowed_items">
               <a href
                 ng-click="mainVm.openItemsModal(allowedItem.type, allowedItem.sockets)">
-                {{ allowedItem.sockets }} Socket {{ allowedItem.type }}
+                {{ ::allowedItem.sockets }} Socket {{ ::allowedItem.type }}
               </a>
             </li>
           </ul>
@@ -64,14 +64,14 @@
               type="success">
             </uib-progressbar>
             <ul>
-              <li ng-repeat="rune in runeWord.rune_order track by $index"
+              <li ng-repeat="rune in ::runeWord.rune_order track by $index"
                 class="runeWord-rune"
                 ng-class="{ 'runeWord-rune--owned': mainVm.runeConditionMet(rune, runeWord.rune_order, $index) }">
                 <rune-popover
                   rune='rune'
                   recipe='mainVm.runeRecipes[rune]'>
                 </rune-popover>
-                <span ng-if="mainVm.runesOwned[rune] > 0">
+                <span ng-show="mainVm.runesOwned[rune] > 0">
                   ({{ mainVm.runesOwned[rune] }})
                 </span>
               </li>
@@ -80,11 +80,11 @@
         </td>
         <td>
           <ul>
-            <div ng-repeat="type in runeWord.completed_stats">
-              <span ng-if="type.key != 'default'">{{ type.key }}</span>
+            <div ng-repeat="type in ::runeWord.completed_stats">
+              <span ng-if="type.key != 'default'">{{ ::type.key }}</span>
               <ul>
-                <li ng-repeat="stat in type.stats">
-                  {{ stat }}
+                <li ng-repeat="stat in ::type.stats">
+                  {{ ::stat }}
                 </li>
               </uL>
             </div>
