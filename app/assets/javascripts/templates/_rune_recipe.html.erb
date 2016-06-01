@@ -2,17 +2,24 @@
   <div ng-repeat="fromItem in recipe" class="recipe-group">
     <div ng-class="'runeList-content recipe-part--'+fromItem.type">
       <div>
-        <span ng-if="fromItem.quantity > 1">
+        <span class="recipe-part-quantity"
+          ng-if="fromItem.quantity > 1">
           {{ ::fromItem.quantity }} x
         </span>
-        {{ ::fromItem.name }}
+        <span class="recipe-part-name">
+          {{ ::fromItem.name }}
+        </span>
       </div>
       <div>
-        <img ng-src="{{ itemImgUrl(fromItem.name) }}"></img>
+        <img class="recipe-part-img"
+          ng-src="{{ itemImgUrl(fromItem.name) }}">
+        </img>
       </div>
     </div>
     <div ng-if="!$last" class="runeList-content">
-      +
+      <span class="recipe-fromItemJoin">
+        +
+      </span>
     </div>
   </div>
 </div>

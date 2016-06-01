@@ -5,7 +5,6 @@ function runeRecipe(ImgUrls) {
   return {
     restrict: 'E',
     scope: {
-      rune: '=',
       recipe: '='
     },
     templateUrl: '_rune_recipe.html',
