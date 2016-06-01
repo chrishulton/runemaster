@@ -20,13 +20,6 @@ describe('runePopover', function() {
 
     $scope = $rootScope.$new();
     $scope.rune = { name: 'Eld' };
-    $scope.recipe = [
-      {
-        name: 'El',
-        quantity: '3',
-        type: 'rune',
-      }
-    ];
 
     spyOn($.fn, 'popover');
 
@@ -35,12 +28,40 @@ describe('runePopover', function() {
     $rootScope.$apply();
   });
 
-  it('triggers the popover with the correct params', function() {
-    expect($.fn.popover).toHaveBeenCalledWith({
-      trigger: 'hover',
-      html: true,
-      content: compiledRuneRecipe,
-      placement: 'right'
+  describe('when the recipe exists', function() {
+    beforeEach(function() {
+      $scope.recipe = [
+        {
+          name: 'El',
+          quantity: '3',
+          type: 'rune',
+        }
+      ];
+
+      compiledRuneRecipe = $compile(runeRecipeHtml)($scope);
+      element = $compile(elementHtml)($scope);
+      $rootScope.$apply();
+    });
+
+    it('triggers the popover with the correct params', function() {
+      expect($.fn.popover).toHaveBeenCalledWith({
+        trigger: 'hover',
+        html: true,
+        content: compiledRuneRecipe,
+        placement: 'right'
+      });
+    });
+  });
+
+  describe('when the recipe does not exist', function() {
+    beforeEach(function() {
+      compiledRuneRecipe = $compile(runeRecipeHtml)($scope);
+      element = $compile(elementHtml)($scope);
+      $rootScope.$apply();
+    });
+
+    it('does not trigger the popover', function() {
+      expect($.fn.popover).not.toHaveBeenCalled();
     });
   });
 });

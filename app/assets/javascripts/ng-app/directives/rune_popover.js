@@ -13,15 +13,17 @@ function runePopover($compile) {
     },
     template: '<span>{{rune}}</span>',
     link: function (scope, el) {
-      var runeRecipeHtml = "<rune-recipe recipe='recipe'></rune-recipe>";
-      var compiledRuneRecipe = $compile(runeRecipeHtml)(scope);
+      if (scope.recipe) {
+        var runeRecipeHtml = "<rune-recipe recipe='recipe'></rune-recipe>";
+        var compiledRuneRecipe = $compile(runeRecipeHtml)(scope);
 
-      $(el).popover({
-        trigger: 'hover',
-        html: true,
-        content: compiledRuneRecipe,
-        placement: 'right'
-      });
+        $(el).popover({
+          trigger: 'hover',
+          html: true,
+          content: compiledRuneRecipe,
+          placement: 'right'
+        });
+      }
     }
   };
 }
