@@ -2,12 +2,13 @@
 function ImgUrls() {
   "use strict";
 
-  var imgUrls= {};
+  var imgUrls = {};
 
   return {
     addImgUrl: function(key, url) {
       imgUrls[key] = url;
     },
+
     getImgUrl: function(key) {
       return imgUrls[key];
     }

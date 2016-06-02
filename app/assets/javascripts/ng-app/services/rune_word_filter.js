@@ -16,7 +16,7 @@ function RuneWordFilter() {
     },
 
     filterByItemType: function(runeWord, itemType) {
-      if (itemType && itemType !== ITEM_TYPE_DEFAULT_LABEL) {
+      if (itemType !== ITEM_TYPE_DEFAULT_LABEL) {
         return _.includes(
           _.map(runeWord.allowed_items, "type"),
           itemType
@@ -37,7 +37,7 @@ function RuneWordFilter() {
     filterBySearchText: function(runeWord, searchText) {
       if (searchText) {
         var regEx = new RegExp(searchText, 'i');
-        return runeWord.name.match(regEx);
+        return !!runeWord.name.match(regEx);
       } else {
         return true;
       }
