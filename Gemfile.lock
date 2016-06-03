@@ -52,6 +52,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    colorize (0.7.7)
     erubis (2.7.0)
     execjs (2.6.0)
     globalid (0.3.6)
@@ -85,6 +86,9 @@ GEM
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
     phantomjs (1.9.8.0)
+    protractor-rails (0.0.19)
+      colorize
+      railties
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -165,6 +169,7 @@ DEPENDENCIES
   multi_json
   nokogiri
   pg
+  protractor-rails
   pry
   rails (= 4.2.1)
   sass-rails (~> 5.0)

@@ -47,5 +47,6 @@ group :development, :test do
   gem 'spring'
   gem 'pry'
   gem 'jasmine-rails'
+  gem 'protractor-rails'
 end
 
