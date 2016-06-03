@@ -4,7 +4,7 @@
 /* global expect */
 "use strict";
 
-describe('runemaster home', function() {
+describe('user views rune data', function() {
   beforeEach(function() {
     browser.get("/");
     browser.waitForAngular();
@@ -13,8 +13,8 @@ describe('runemaster home', function() {
   describe('runes table', function() {
     it('renders each rune', function() {
       expect(
-        element.all(by.css('.runeList tr')).count()
-      ).toEqual(34);
+        element.all(by.css('.runeList tbody tr')).count()
+      ).toEqual(33);
     });
 
     describe('rune content', function() {
@@ -61,8 +61,8 @@ describe('runemaster home', function() {
   describe('rune words table', function() {
     it('renders each rune word', function() {
       expect(
-        element.all(by.css('.runeWordList tr')).count()
-      ).toEqual(79);
+        element.all(by.css('.runeWordList tbody tr')).count()
+      ).toEqual(78);
     });
 
     describe('rune word content', function() {

@@ -52,7 +52,7 @@
             </span>
           </td>
         </tr>
-        <tr ng-show='results.length === 0'>
+        <tr ng-if='results.length === 0'>
           <td class="zeroState"
             colspan="{{ ::items.properties.length }}">
             No applicable items.
