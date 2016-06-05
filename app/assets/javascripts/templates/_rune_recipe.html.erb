@@ -1,5 +1,5 @@
 <div class='recipe'>
-  <div ng-repeat="fromItem in recipe" class="recipe-group">
+  <div ng-repeat="fromItem in recipe.formula" class="recipe-group">
     <div ng-class="'runeList-content recipe-part--'+fromItem.type">
       <div>
         <span class="recipe-part-quantity"
@@ -22,4 +22,8 @@
       </span>
     </div>
   </div>
+</div>
+<div ng-if="recipe.ladder_only"
+  class="isRestricted">
+  Ladder Only
 </div>

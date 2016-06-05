@@ -17,6 +17,12 @@ describe('user views rune data', function() {
       ).toEqual(33);
     });
 
+    it('renders the restricted msg for the ladder only rune words', function() {
+      expect(
+        element.all(by.css('.runeList tbody tr .isRestricted')).count()
+      ).toEqual(19);
+    });
+
     describe('rune content', function() {
       var eldRune = element(by.css('.runeList tbody tr:nth-child(2)'));
 
@@ -54,6 +60,10 @@ describe('user views rune data', function() {
           recipeCell.element(by.css('.recipe-part-img'))
           .getAttribute('src')
         ).toEqual('http://classic.battle.net//images/battle/diablo2exp/images/runes/runeEl.gif');
+
+        expect(
+          recipeCell.element(by.css('.isRestricted')).isPresent()
+        ).toEqual(false);
       });
     });
   });
@@ -97,6 +107,20 @@ describe('user views rune data', function() {
           expect(runeProgressBar.getAttribute('aria-valuenow')).toEqual('0');
           expect(runeProgressBar.getAttribute('aria-valuemin')).toEqual('0');
           expect(runeProgressBar.getAttribute('aria-valuemax')).toEqual('3');
+        });
+
+        it('renders the recipe popover on hover', function() {
+          var firstRuneOrderRune = runeOrderCell.element(by.css('li:nth-child(1)'));
+
+          expect(
+            firstRuneOrderRune.element(by.css('.popover')).isPresent()
+          ).toEqual(false);
+
+          firstRuneOrderRune.element(by.tagName('rune-popover')).click().then(function() {
+            expect(
+              firstRuneOrderRune.element(by.css('.popover')).isPresent()
+            ).toEqual(true);
+          });
         });
       });
 

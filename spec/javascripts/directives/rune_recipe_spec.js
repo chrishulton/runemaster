@@ -27,21 +27,55 @@ describe('runeRecipe', function() {
     });
   });
 
-  describe('rendering recipe data', function() {
+  describe('rendering ladder only', function() {
+    describe('when ladder only is true', function() {
+      beforeEach(function() {
+        $scope = $rootScope.$new();
+        $scope.recipe = { ladder_only: true };
+        element = $compile(elementHtml)($scope);
+        $rootScope.$apply();
+      });
+
+      it('shows the restricted msg', function() {
+        expect(
+          element.find(".isRestricted").length
+        ).toEqual(1);
+      });
+    });
+
+    describe('when ladder only is false', function() {
+      beforeEach(function() {
+        $scope = $rootScope.$new();
+        $scope.recipe = { ladder_only: false };
+        element = $compile(elementHtml)($scope);
+        $rootScope.$apply();
+      });
+
+      it('does not show the restricted msg', function() {
+        expect(
+          element.find(".isRestricted").length
+        ).toEqual(0);
+      });
+    });
+  });
+
+  describe('rendering formula data', function() {
     beforeEach(function() {
       $scope = $rootScope.$new();
-      $scope.recipe = [
-        {
-          name: 'El',
-          quantity: '3',
-          type: 'rune',
-        },
-        {
-          name: 'Diamond',
-          quantity: '1',
-          type: 'gem',
-        },
-      ];
+      $scope.recipe = {
+        formula: [
+          {
+            name: 'El',
+            quantity: '3',
+            type: 'rune',
+          },
+          {
+            name: 'Diamond',
+            quantity: '1',
+            type: 'gem',
+          },
+        ]
+      };
 
       element = $compile(elementHtml)($scope);
       $rootScope.$apply();
