@@ -67,6 +67,32 @@ describe('user filters rune data', function() {
     });
   });
 
+  describe('filtering by rune', function() {
+    var runesMenu = element(by.model('mainVm.selectedRune'));
+
+    it('contains the runes in the dropdown', function() {
+      var allowedRuneOptions = runesMenu.all(by.css('option'));
+
+      expect(allowedRuneOptions.count()).toEqual(34);
+      expect(allowedRuneOptions.first().getText()).toEqual("Any");
+      expect(allowedRuneOptions.last().getText()).toEqual("Zod");
+    });
+
+    it('filters by rune', function() {
+      var zodOption = runesMenu.element(by.css('option:nth-child(34)'));
+
+      zodOption.click().then(function() {
+        var filteredRuneWords = element.all(by.css('.runeWordList tbody tr'));
+
+        expect(filteredRuneWords.count()).toEqual(1);
+
+        expect(
+          filteredRuneWords.first().element(by.css('td:nth-child(3)')).getText()
+        ).toEqual("Vex\nHel\nEl\nEld\nZod\nEth");
+      });
+    });
+  });
+
   describe('filtering by runes owned', function() {
     var runesNeededMenu = element(by.model('mainVm.selectedRunesNeeded'));
 

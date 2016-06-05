@@ -13,6 +13,13 @@
       </select>
     </fieldset>
     <fieldset>
+      Rune:
+      <select
+        ng-model="mainVm.selectedRune"
+        ng-options="rune for rune in mainVm.runeNames">
+      </select>
+    </fieldset>
+    <fieldset>
       Runes Needed:
       <select
         ng-model="mainVm.selectedRunesNeeded"

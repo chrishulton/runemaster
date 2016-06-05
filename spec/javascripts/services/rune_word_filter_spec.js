@@ -38,6 +38,31 @@ describe('RuneWordFilter', function() {
     });
   });
 
+  describe('#filterByRune', function() {
+    var fakeRune = 'El';
+    var fakeRuneWord = {
+      rune_order: ['El', 'Ko']
+    };
+
+    it('returns true for the default rune type', function() {
+      expect(RuneWordFilter.filterByRune(
+        fakeRuneWord, RuneWordFilter.getRuneDefaultLabel()
+      )).toEqual(true);
+    });
+
+    it('returns true when the rune matches', function() {
+      expect(RuneWordFilter.filterByRune(
+        fakeRuneWord, fakeRune
+      )).toEqual(true);
+    });
+
+    it('returns false otherwise', function() {
+      expect(RuneWordFilter.filterByRune(
+        fakeRuneWord, "Something Else"
+      )).toEqual(false);
+    });
+  });
+
   describe('#filterByLadderAllowed', function() {
     describe('when ladder is allowed', function() {
       it('returns true', function() {

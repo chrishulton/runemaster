@@ -4,11 +4,16 @@ function RuneWordFilter() {
   "use strict";
 
   var ITEM_TYPE_DEFAULT_LABEL = "All";
+  var RUNE_DEFAULT_LABEL = "Any";
   var RUNES_NEEDED_DEFAULT_LABEL = "Any";
 
   return {
     getItemTypeDefaultLabel: function() {
       return ITEM_TYPE_DEFAULT_LABEL;
+    },
+
+    getRuneDefaultLabel: function() {
+      return RUNE_DEFAULT_LABEL;
     },
 
     getRunesNeededDefaultLabel: function() {
@@ -38,6 +43,14 @@ function RuneWordFilter() {
       if (searchText) {
         var regEx = new RegExp(searchText, 'i');
         return !!runeWord.name.match(regEx);
+      } else {
+        return true;
+      }
+    },
+
+    filterByRune: function(runeWord, rune) {
+      if (rune !== RUNE_DEFAULT_LABEL) {
+        return _.includes(runeWord.rune_order, rune);
       } else {
         return true;
       }

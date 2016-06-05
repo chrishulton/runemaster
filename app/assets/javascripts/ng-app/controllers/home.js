@@ -13,6 +13,8 @@ function HomeCtrl(
   viewModel.includeLadderOnly = true;
   viewModel.selectedItemType = RuneWordFilter.getItemTypeDefaultLabel();
   viewModel.itemTypes = [viewModel.selectedItemType];
+  viewModel.selectedRune = RuneWordFilter.getRuneDefaultLabel();
+  viewModel.runeNames = [viewModel.selectedRune];
   viewModel.selectedRunesNeeded = RuneWordFilter.getRunesNeededDefaultLabel();
   viewModel.runesNeededAmts = [viewModel.selectedRunesNeeded];
   viewModel.runesOwned = {};
@@ -42,6 +44,8 @@ function HomeCtrl(
       runeWord, viewModel.includeLadderOnly
     ) && RuneWordFilter.filterByItemType(
       runeWord, viewModel.selectedItemType
+    ) && RuneWordFilter.filterByRune(
+      runeWord, viewModel.selectedRune
     ) && RuneWordFilter.filterBySearchText(
       runeWord, viewModel.runeWordNameSearchText
     ) && RuneWordFilter.filterByRunesNeeded(
@@ -101,6 +105,12 @@ function HomeCtrl(
       addItemImageUrls(runeData, "name");
       viewModel.runes = runeData;
 
+      viewModel.runeNames = viewModel.runeNames.concat(
+        runeData.map(function(rune) {
+          return rune.name;
+        })
+      );
+
       initializeLocalStorage();
     }),
 
@@ -109,10 +119,10 @@ function HomeCtrl(
       viewModel.gems = gemData;
     }),
 
-    Items.get().$promise.then(function(data) {
-      viewModel.items = data;
+    Items.get().$promise.then(function(itemData) {
+      viewModel.items = itemData;
       viewModel.itemTypes = viewModel.itemTypes.concat(
-        Object.keys(data.toJSON()).sort()
+        Object.keys(itemData.toJSON()).sort()
       );
     }),
 
